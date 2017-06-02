@@ -1,0 +1,104 @@
+﻿@model Paladin.Models.Progress
+
+<div class="col-md-2">
+    @if (Model.HighestStage >= 10)
+    {
+        if (Model.CurrentStage == 10)
+        {
+            @Html.ActionLink("Personal", "ApplicantInfo", "Applicant", null, new { @class = "btn btn-progress btn-progress-active" })
+        }
+        else
+        {
+            @Html.ActionLink("Personal", "ApplicantInfo", "Applicant", null, new { @class = "btn btn-progress" })
+        }
+    }
+    else
+    {
+        <span class="btn btn-progress">Personal</span>
+    }
+</div>
+<div class="col-md-2">
+    @if (Model.HighestStage >= 20)
+    {
+        if (Model.CurrentStage == 20)
+        {
+            @Html.ActionLink("Address", "AddressInfo", "Address", null, new { @class = "btn btn-progress btn-progress-active" })
+        }
+        else
+        {
+            @Html.ActionLink("Address", "AddressInfo", "Address", null, new { @class = "btn btn-progress" })
+        }
+    }
+    else
+    {
+        <span class="btn btn-progress">Address</span>
+    }
+</div>
+<div class="col-md-2">
+    @if (Model.HighestStage >= 30)
+    {
+        if (Model.CurrentStage == 30)
+        {
+            @Html.ActionLink("Employment", "EmploymentInfo", "Employment", null, new { @class = "btn btn-progress btn-progress-active" })
+        }
+        else
+        {
+            @Html.ActionLink("Employment", "EmploymentInfo", "Employment", null, new { @class = "btn btn-progress" })
+        }
+    }
+    else
+    {
+        <span class="btn btn-progress">Employment</span>
+    }
+</div>
+<div class="col-md-2">
+    @if (Model.HighestStage >= (int)40)
+    {
+        if (Model.CurrentStage == (int)40)
+        {
+            @Html.ActionLink("Vehicle", "VehicleInfo", "Employment", null, new { @class = "btn btn-progress btn-progress-active" })
+        }
+        else
+        {
+            @Html.ActionLink("Vehicle", "VehicleInfo", "Vehicle", null, new { @class = "btn btn-progress" })
+        }
+    }
+    else
+    {
+        <span class="btn btn-progress">Vehicle</span>
+    }
+</div>
+<div class="col-md-2">
+    @if (Model.HighestStage >= (int)50)
+    {
+        if (Model.CurrentStage == (int)50)
+        {
+            @Html.ActionLink("Products", "ProductInfo", "Products", null, new { @class = "btn btn-progress btn-progress-active" })
+        }
+        else
+        {
+            @Html.ActionLink("Products", "ProductInfo", "Products", null, new { @class = "btn btn-progress" })
+        }
+    }
+    else
+    {
+        <span class="btn btn-progress">Products</span>
+    }
+</div>
+<div class="col-md-2">
+    @if (Model.HighestStage >= (int)60)
+    {
+        if (Model.CurrentStage == (int)60)
+        {
+            @Html.ActionLink("Final", "Final", "Home", null, new { @class = "btn btn-progress btn-progress-active" })
+        }
+        else
+        {
+            @Html.ActionLink("Final", "Final", "Home", null, new { @class = "btn btn-progress" })
+        }
+    }
+    else
+    {
+        <span class="btn btn-progress">Final</span>
+    }
+</div>
