@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Paladin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Paladin.Models;
 
 namespace Paladin.Infrastructure
 {
-    public class WorkfolwFilter : FilterAttribute, IActionFilter
+    public class WorkflowFilter : FilterAttribute, IActionFilter
     {
         private int _highestCompletedStage;
         public int MinRequiredStage { get; set; }
@@ -22,13 +22,11 @@ namespace Paladin.Infrastructure
                 Guid tracker;
                 if (Guid.TryParse(applicantId.ToString(), out tracker))
                 {
-                    var context = DependencyResolver.Current.GetService<PaladinDbContext>();
-                    _highestCompletedStage = context.Applicants
-                        .FirstOrDefault(x => x.ApplicantTracker == tracker)
-                        .WorkFlowStage;
-
+                    var _context = DependencyResolver.Current.GetService<PaladinDbContext>();
+                    _highestCompletedStage = _context.Applicants.FirstOrDefault(x => x.ApplicantTracker == tracker).WorkFlowStage;
                     if (MinRequiredStage > _highestCompletedStage)
                     {
+
                         switch (_highestCompletedStage)
                         {
                             case (int)WorkflowValues.ApplicantInfo:
@@ -47,7 +45,7 @@ namespace Paladin.Infrastructure
                                 filterContext.Result = GenerateRedirectUrl("VehicleInfo", "Vehicle");
                                 break;
 
-                            case (int)WorkflowValues.Products:
+                            case (int)WorkflowValues.ProductInfo:
                                 filterContext.Result = GenerateRedirectUrl("ProductInfo", "Products");
                                 break;
                         }
@@ -63,31 +61,28 @@ namespace Paladin.Infrastructure
             }
         }
 
+        private RedirectToRouteResult GenerateRedirectUrl(string action, string controller)
+        {
+            return new RedirectToRouteResult(new RouteValueDictionary(new { action = action, controller = controller }));
+        }
+        
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var context = DependencyResolver.Current.GetService<PaladinDbContext>();
-
-            var sessionId = filterContext.HttpContext.Session["Tracker"];
-
+            var _context = DependencyResolver.Current.GetService<PaladinDbContext>();
+            var sessionId = HttpContext.Current.Session["Tracker"];
             if (sessionId != null)
             {
                 Guid tracker;
                 if (Guid.TryParse(sessionId.ToString(), out tracker))
                 {
-                    if (filterContext.HttpContext.Request.RequestType == "POST" &&
-                        CurrentStage >= _highestCompletedStage)
+                    if (filterContext.HttpContext.Request.RequestType == "POST" && CurrentStage >= _highestCompletedStage)
                     {
-                        var applicant = context.Applicants.SingleOrDefault(x => x.ApplicantTracker == tracker);
-                        if (applicant != null) applicant.WorkFlowStage = CurrentStage;
-                        context.SaveChanges();
+                        var applicant = _context.Applicants.FirstOrDefault(x => x.ApplicantTracker == tracker);
+                        applicant.WorkFlowStage = CurrentStage;
+                        _context.SaveChanges();
                     }
                 }
             }
-        }
-
-        private RedirectToRouteResult GenerateRedirectUrl(string action, string controller)
-        {
-            return new RedirectToRouteResult(new RouteValueDictionary(new { action = action, controller = controller }));
         }
     }
 }

@@ -11,7 +11,8 @@ using Paladin.ViewModels;
 
 namespace Paladin.Controllers
 {
-    [WorkfolwFilter(MinRequiredStage = (int)WorkflowValues.Begin,
+    [WorkflowFilter(
+        MinRequiredStage = (int)WorkflowValues.Begin,
         CurrentStage = (int)WorkflowValues.ApplicantInfo)]
     public class ApplicantController : Controller
     {

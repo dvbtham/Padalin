@@ -11,7 +11,7 @@ using Paladin.Infrastructure;
 
 namespace Paladin.Controllers
 {
-    [WorkfolwFilter(MinRequiredStage = (int)WorkflowValues.EmploymentInfo,
+    [WorkflowFilter(MinRequiredStage = (int)WorkflowValues.EmploymentInfo,
         CurrentStage = (int)WorkflowValues.VehicleInfo)]
     public class VehicleController : Controller
     {

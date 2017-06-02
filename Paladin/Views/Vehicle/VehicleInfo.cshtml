@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 @section ProgressBar{
-    @Html.Action("ProgressBar", "Home", new { currentStage = 30 })
+    @Html.Action("ProgressBar", "Home", new { currentStage = (int)WorkflowValues.VehicleInfo })
 }
 <div class="col-md-12">
     <h2 class="page-header">What kind of vehicle do you drive?<small style="margin-left: 25px">Tell us about your ride.</small></h2>

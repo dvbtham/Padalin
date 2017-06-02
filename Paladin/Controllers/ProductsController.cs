@@ -11,8 +11,8 @@ using Paladin.Infrastructure;
 
 namespace Paladin.Controllers
 {
-    [WorkfolwFilter(MinRequiredStage = (int)WorkflowValues.VehicleInfo,
-        CurrentStage = (int)WorkflowValues.Products)]
+    [WorkflowFilter(MinRequiredStage = (int)WorkflowValues.VehicleInfo,
+        CurrentStage = (int)WorkflowValues.ProductInfo)]
     public class ProductsController : Controller
     {
         private PaladinDbContext _context;

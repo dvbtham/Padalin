@@ -11,7 +11,8 @@ using Paladin.Infrastructure;
 
 namespace Paladin.Controllers
 {
-    [WorkfolwFilter(MinRequiredStage = (int)WorkflowValues.ApplicantInfo,
+    [WorkflowFilter(
+        MinRequiredStage = (int)WorkflowValues.ApplicantInfo,
         CurrentStage = (int)WorkflowValues.AddressInfo)]
     public class AddressController : Controller
     {

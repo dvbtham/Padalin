@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 @section ProgressBar{
-    @Html.Action("ProgressBar", "Home", new { currentStage = 20 })
+    @Html.Action("ProgressBar", "Home", new { currentStage = (int)WorkflowValues.EmploymentInfo })
 }
 <div class="col-md-12">
     <h2 class="page-header">What do you do?<small style="margin-left: 25px">Let your hard work pay off!</small></h2>

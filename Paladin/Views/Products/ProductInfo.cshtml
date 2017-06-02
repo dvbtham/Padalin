@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 @section ProgressBar{
-    @Html.Action("ProgressBar", "Home", new { currentStage = 40 })
+    @Html.Action("ProgressBar", "Home", new { currentStage = (int)WorkflowValues.ProductInfo })
 }
 <div class="col-md-12">
     <h2 class="page-header">Customize Your Policy<small style="margin-left: 25px">It's all up to you!</small></h2>

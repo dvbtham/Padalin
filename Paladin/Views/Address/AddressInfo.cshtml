@@ -3,7 +3,7 @@
     ViewBag.Title = "AddressInfo";
 }
 @section ProgressBar{
-    @Html.Action("ProgressBar", "Home", new { currentStage = 10 })
+    @Html.Action("ProgressBar", "Home", new { currentStage = (int)WorkflowValues.AddressInfo })
 }
 <div class="col-md-12">
     <h2 class="page-header">Where do you live?<small style="margin-left: 25px">Tell us about your place!</small></h2>

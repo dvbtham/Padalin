@@ -35,7 +35,7 @@ namespace Paladin.Infrastructure
             response.Write(builder);
         }
 
-        public static string GetValue(object item, string propName)
+        private static string GetValue(object item, string propName)
         {
             return item.GetType().GetProperty(propName).GetValue(item, null).ToString() ?? "";
         }
