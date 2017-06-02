@@ -6,15 +6,18 @@ using System.Web.Mvc;
 using Paladin.Models;
 using System.Data.Entity;
 using AutoMapper;
+using Paladin.Infrastructure;
 using Paladin.ViewModels;
 
 namespace Paladin.Controllers
 {
+    [WorkfolwFilter(MinRequiredStage = (int)WorkflowValues.Begin,
+        CurrentStage = (int)WorkflowValues.ApplicantInfo)]
     public class ApplicantController : Controller
     {
         private PaladinDbContext _context;
 
-        public ApplicantController(PaladinDbContext context) 
+        public ApplicantController(PaladinDbContext context)
         {
             _context = context;
         }
@@ -36,7 +39,7 @@ namespace Paladin.Controllers
         [HttpPost]
         public ActionResult ApplicantInfo(ApplicantVM vm)
         {
-            
+
             if (ModelState.IsValid)
             {
                 if (Session["Tracker"] == null)
@@ -58,7 +61,7 @@ namespace Paladin.Controllers
                     _context.Applicants.Add(newApplicant);
                 }
                 _context.SaveChanges();
-                
+
                 return RedirectToAction("AddressInfo", "Address");
             }
 

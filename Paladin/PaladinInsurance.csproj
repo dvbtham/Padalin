@@ -150,6 +150,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CsvResult.cs" />
+    <Compile Include="Infrastructure\WorkflowValues.cs" />
+    <Compile Include="Infrastructure\WorkfolwFilter.cs" />
     <Compile Include="Infrastructure\XmlResult.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Employment.cs" />

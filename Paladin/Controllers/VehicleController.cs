@@ -7,9 +7,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Paladin.Infrastructure;
 
 namespace Paladin.Controllers
 {
+    [WorkfolwFilter(MinRequiredStage = (int)WorkflowValues.EmploymentInfo,
+        CurrentStage = (int)WorkflowValues.VehicleInfo)]
     public class VehicleController : Controller
     {
         private PaladinDbContext _context;
